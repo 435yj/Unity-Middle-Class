@@ -12,6 +12,10 @@ public class UIManager : MonoBehaviour
     private GameObject settingPanel;
     [SerializeField]
     private GameObject titleCanvas;
+
+    [SerializeField]
+    private GameObject stageCanvas;
+
     private bool isEsc = false;
     [SerializeField]
     private GameObject tutorialPanel;
@@ -31,7 +35,7 @@ public class UIManager : MonoBehaviour
     private Slider effectSlider;
     [SerializeField]
     private Slider bgmSlider;
-    // Start is called before the first frame update
+    
     void Start()
     {
         if (!DataManager.Inst.isReStart)
@@ -49,8 +53,8 @@ public class UIManager : MonoBehaviour
 
         SliderValueSet();
 
-
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -95,13 +99,25 @@ public class UIManager : MonoBehaviour
     }
     public void OnClickStartBtn()
     {
-        titleCanvas.SetActive(false);
+        stageCanvas.SetActive(false);
         fireUIPanal.SetActive(true);
         OnClickReturnToGame();
         if (!DataManager.Inst.CurrentPlayer.isTutorial)
         {
             TurnOnTutorialPanel();
         }
+    }
+
+    public void ClickStageBtn()
+    {
+        titleCanvas.SetActive(false);
+        stageCanvas.SetActive(true);
+    }
+
+    public void ClickBackBtn()
+    {
+        titleCanvas.SetActive(true);
+        stageCanvas.SetActive(false);
     }
 
     public void ActivePanal(GameObject panal)
